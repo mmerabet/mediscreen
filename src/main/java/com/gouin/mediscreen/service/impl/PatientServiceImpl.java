@@ -1,8 +1,8 @@
 package com.gouin.mediscreen.service.impl;
 
 import com.gouin.mediscreen.model.Patient;
-import com.gouin.mediscreen.service.PatientService;
 import com.gouin.mediscreen.repository.PatientRepository;
+import com.gouin.mediscreen.service.PatientService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +22,16 @@ public class PatientServiceImpl implements PatientService {
     public Patient getPatientById(int idPatient) {
         return this.patientRepository.findById(idPatient);
     }
-    public Patient addPatient(Patient patient){
+
+    public Patient addPatient(Patient patient) {
         return this.patientRepository.save(patient);
+    }
+
+    public Patient findPatientById(int idPatient) {
+        return this.patientRepository.findById(idPatient);
+    }
+
+    public void deletePatient(int idPatient) {
+        this.patientRepository.deleteById(idPatient);
     }
 }

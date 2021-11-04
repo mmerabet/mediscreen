@@ -5,6 +5,7 @@ import com.gouin.mediscreen.service.PatientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +25,9 @@ public class PatientController {
         List<Patient> patients = this.patientService.getAllPatient();
         return new ResponseEntity<>(patients, HttpStatus.ACCEPTED);
     }
+
+//    @PostMapping("/add")
+//    public ResponseEntity<Patient> addPatient(patient: Patient){
+//
+//    }
 }
