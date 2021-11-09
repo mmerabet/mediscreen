@@ -19,14 +19,12 @@ public class MediscreenApplication {
 	@Bean
 	public CorsFilter corsFilter() {
 		final CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowCredentials(true);
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-		configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-		configuration.setAllowedMethods(Arrays.asList("HEAD",
-				"GET", "POST", "PUT", "DELETE", "PATCH"));
+		configuration.setAllowCredentials(false);
+		configuration.setAllowedOrigins(Arrays.asList("*"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		configuration.setAllowedMethods(Arrays.asList("*"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return new CorsFilter(source);
 	}
-
 }
