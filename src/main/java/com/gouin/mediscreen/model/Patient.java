@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import java.util.Date;
 
 
 @Entity
@@ -25,7 +23,7 @@ public class Patient {
     @NotBlank(message = "Veuillez mettre un nom")
     private String lastName;
 //    @NotEmpty(message = "Veuillez mettre une date de naissance")
-    private Date birthdate;
+    private String birthdate;
     @NotBlank(message = "Veuillez choisir le genre")
     private String gender;
     private String address;
