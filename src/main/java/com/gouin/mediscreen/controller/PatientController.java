@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@Consumes(MediaType.APPLICATION_JSON)
-//@Produces(MediaType.APPLICATION_JSON)
 @CrossOrigin("*")
 @Slf4j
 @RestController
@@ -35,14 +33,13 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @GetMapping("/patients")
-    @Operation(summary = "Get all users", description = "Return the list of all persons",
+    @Operation(summary = "Get all patient", description = "Return the list of all patient",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
             responses = {
                     @ApiResponse(responseCode = "200", description = "List of all persons", content = @Content(schema = @Schema(implementation = Patient[].class))),
                     @ApiResponse(responseCode = "500", description = "Unexpected error", content = @Content(schema = @Schema(implementation = UserNotFoundException.class)))
             })
-
+    @GetMapping("/patients")
     public ResponseEntity<List<Patient>> getAllPatients() {
         log.info("Controller getAllPatients");
         List<Patient> patients = this.patientService.findAllPatient();
@@ -71,7 +68,7 @@ public class PatientController {
         return new ResponseEntity<>(newPatient, HttpStatus.CREATED);
     }
 
-    @PutMapping()
+    @PutMapping("")
     public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient) {
         log.info("Controller updatePatient");
         Patient updatePatient = this.patientService.updatePatient(patient);
@@ -79,9 +76,9 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePatient(@PathVariable int id) {
+    public ResponseEntity<String> deletePatient(@PathVariable int id) {
         log.info("Controller deletePatient");
         this.patientService.deletePatient(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Patient successfully deleted", HttpStatus.OK);
     }
 }

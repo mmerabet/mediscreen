@@ -21,7 +21,6 @@ public class PatientServiceImpl {
     }
 
     public Patient addPatient(Patient patient) {
-        patient.setUserCode(UUID.randomUUID().toString());
         return this.patientRepository.save(patient);
     }
 
@@ -35,11 +34,19 @@ public class PatientServiceImpl {
                 orElseThrow(() -> new UserNotFoundException("User by id " + firstName + " and " + lastName + " was not found"));
     }
 
-    public void deletePatient(int idPatient) {
-        this.patientRepository.deleteById(idPatient);
+    public Patient deletePatient(int idPatient) {
+        return this.patientRepository.deleteById(idPatient)
+                .orElseThrow(() -> new UserNotFoundException("User by id " + idPatient + " was not found"));
     }
 
-    public Patient updatePatient(Patient patient) {
+    public Patient updatePatient(Patient newPatient) {
+        Patient patient = findPatientById(newPatient.getId());
+        patient.setFirstName(newPatient.getFirstName());
+        patient.setLastName(newPatient.getLastName());
+        patient.setAddress(newPatient.getAddress());
+        patient.setBirthdate(newPatient.getBirthdate());
+        patient.setPhone(newPatient.getPhone());
+        patient.setGender(newPatient.getGender());
         return this.patientRepository.save(patient);
     }
 }

@@ -18,7 +18,6 @@ public class Patient {
     @Column(name = "id", nullable = false, updatable = false)
     private int id;
     @NotBlank(message = "Veuillez mettre un prenom")
-    @Column(unique = true)
     private String firstName;
     @NotBlank(message = "Veuillez mettre un nom")
     private String lastName;
@@ -28,6 +27,4 @@ public class Patient {
     private String gender;
     private String address;
     private String phone;
-    @Column(nullable = false, updatable = false)
-    private String userCode;
 }
