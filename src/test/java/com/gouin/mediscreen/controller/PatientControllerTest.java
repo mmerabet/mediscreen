@@ -113,7 +113,6 @@ class PatientControllerTest {
     @Test
     void deletePatientTest() throws Exception {
         //Arrange
-        when(patientService.deletePatient(any(Integer.class))).thenReturn(new Patient());
 
         //Act
         this.mockMvc.perform(MockMvcRequestBuilders

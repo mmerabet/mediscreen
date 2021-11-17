@@ -6,7 +6,6 @@ import com.gouin.mediscreen.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class PatientServiceImpl {
@@ -34,9 +33,13 @@ public class PatientServiceImpl {
                 orElseThrow(() -> new UserNotFoundException("User by id " + firstName + " and " + lastName + " was not found"));
     }
 
-    public Patient deletePatient(int idPatient) {
-        return this.patientRepository.deleteById(idPatient)
-                .orElseThrow(() -> new UserNotFoundException("User by id " + idPatient + " was not found"));
+    public void deletePatient(int idPatient) {
+         try{
+             this.patientRepository.deleteById(idPatient);
+         }
+         catch(Exception e){
+           throw new UserNotFoundException("User by id " + idPatient + " was not found");
+         }
     }
 
     public Patient updatePatient(Patient newPatient) {

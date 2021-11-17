@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
 @Slf4j
 @RestController
 @RequestMapping("/patient")
@@ -26,6 +25,7 @@ import java.util.List;
         version = "1.0",
         description = "Availables methods for persons"
 ))
+@CrossOrigin("*")
 public class PatientController {
     private final PatientServiceImpl patientService;
 
@@ -52,7 +52,6 @@ public class PatientController {
         Patient patient = this.patientService.findPatientById(id);
         return new ResponseEntity<>(patient, HttpStatus.OK);
     }
-
     @GetMapping()
     @ResponseBody
     public ResponseEntity<Patient> getPatientByFirtNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
@@ -61,6 +60,7 @@ public class PatientController {
         return new ResponseEntity<>(patient, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/add")
     public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
         log.info("Controller addPatient");
@@ -68,6 +68,7 @@ public class PatientController {
         return new ResponseEntity<>(newPatient, HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("")
     public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient) {
         log.info("Controller updatePatient");
@@ -76,9 +77,9 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePatient(@PathVariable int id) {
+    public ResponseEntity<?> deletePatient(@PathVariable int id) {
         log.info("Controller deletePatient");
         this.patientService.deletePatient(id);
-        return new ResponseEntity<>("Patient successfully deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
