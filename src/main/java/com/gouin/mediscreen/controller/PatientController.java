@@ -21,9 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/patient")
 @OpenAPIDefinition(info = @Info(
-        title = "Person controller",
+        title = "Patient controller",
         version = "1.0",
-        description = "Availables methods for persons"
+        description = "Availables methods for patients"
 ))
 @CrossOrigin("*")
 public class PatientController {

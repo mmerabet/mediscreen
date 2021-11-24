@@ -52,4 +52,5 @@ public class PatientServiceImpl {
         patient.setGender(newPatient.getGender());
         return this.patientRepository.save(patient);
     }
+
 }
