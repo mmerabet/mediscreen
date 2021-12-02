@@ -51,7 +51,7 @@ class PatientControllerTest {
         when(patientService.findPatientById(any(Integer.class)))
                 .thenReturn(new Patient());
         //Act
-        MvcResult mvcResult = this.mockMvc.perform(get("/patient/id?id=1"))
+        MvcResult mvcResult = this.mockMvc.perform(get("/patient/{id}", anyInt()))
                 .andDo(print())
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();

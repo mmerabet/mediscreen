@@ -46,8 +46,8 @@ public class PatientController {
         return new ResponseEntity<>(patients, HttpStatus.OK);
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<Patient> getPatientById(@RequestParam int id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Patient> getPatientById(@PathVariable int id) {
         log.info("Controller getPatientById");
         Patient patient = this.patientService.findPatientById(id);
         return new ResponseEntity<>(patient, HttpStatus.OK);
