@@ -11,6 +11,7 @@
     <groupId>com.gouin.mediscreen</groupId>
     <artifactId>mediscreen</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>mediscreen</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -71,6 +72,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.6</version>
                 <configuration>
                     <excludes>
                         <exclude>
